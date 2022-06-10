@@ -1,0 +1,22 @@
+{
+  "name": "js-week-3-intro-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "task-1.js",
+  "scripts": {
+    "test": "node task-4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldobangun/tugas-javascript-week-3-intro-3.git"
+  },
+  "author": "Aldo Bangun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aldobangun/tugas-javascript-week-3-intro-3/issues"
+  },
+  "homepage": "https://github.com/aldobangun/tugas-javascript-week-3-intro-3#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
