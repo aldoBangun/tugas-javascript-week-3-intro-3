@@ -6,9 +6,8 @@ const errorHandler = (err) => {
       const { status } = err.response
       
       if(status === 404) {
-         console.log('Data not Found')
-         return
-      }
+         return console.log('Data not found!')
+      } 
    }
 
    console.log(err.message)
