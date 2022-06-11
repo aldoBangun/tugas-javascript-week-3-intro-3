@@ -13,15 +13,9 @@ const getMonths = (callback) => {
 }
 
 const printMonths = (err, months) => {
-   new Promise((resolve, reject) => {
-      if(!err) {
-         resolve(months)
-      } else {
-         reject(err)
-      }
-   })
-   .then(months => months.map(month => console.log(month)))
-   .catch(err => console.log(err.message))
+   new Promise((resolve, reject) => err ? reject(err) : resolve(months))
+      .then(months => months.map(month => console.log(month)))
+      .catch(err => console.log(err.message))
 }
 
 getMonths(printMonths)
