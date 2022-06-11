@@ -1,6 +1,6 @@
 const getMonths = (callback) => {
    setTimeout(()=>{
-      let error = false
+      let error = true
       let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oktober', 'November', 'December']
 
       if(!error) {
@@ -13,8 +13,15 @@ const getMonths = (callback) => {
 }
 
 const printMonths = (err, months) => {
-   if(err) return console.log(err)   
-   months.map(month => console.log(month))
+   new Promise((resolve, reject) => {
+      if(!err) {
+         resolve(months)
+      } else {
+         reject(err)
+      }
+   })
+   .then(months => months.map(month => console.log(month)))
+   .catch(err => console.log(err.message))
 }
 
 getMonths(printMonths)
