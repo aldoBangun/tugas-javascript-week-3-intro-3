@@ -13,18 +13,19 @@ const errorHandler = (err) => {
    console.log(err.message)
 }
 
-const getUsersName = async (url, callback) => {
-   try {
-      const res = await axios.get(url)
-      callback(res.data)
-   } catch(err) {
-      errorHandler(err)
-   }
-}
-
 const printUsersName = (data) => {
    const names = data.map(item => item.name)
    console.log(names)
 }
 
-getUsersName(url, printUsersName)
+const getUsersName = async (url) => {
+   try {
+      const res = await axios.get(url)
+      printUsersName(res.data)
+
+   } catch(err) {
+      errorHandler(err)
+   }
+}
+
+getUsersName(url)
