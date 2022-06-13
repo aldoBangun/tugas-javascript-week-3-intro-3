@@ -57,7 +57,7 @@ const fetchUser = () => {
          password: 'javascript'
       }
 
-      user ? resolve(user) : reject('User not Found')
+      user ? resolve(user) : reject(new Error('User not Found'))
    })
 }
 
