@@ -48,7 +48,39 @@ const printMovies = async () => {
 
 printMovies()
 
-// Program 2
-const getUsers = () => {
 
+// Program 2
+const fetchUser = () => {
+   return new Promise((resolve, reject) => {
+      const user = {
+         username: 'aldobangun',
+         password: 'javascript'
+      }
+
+      user ? resolve(user) : reject('User not Found')
+   })
 }
+
+const validateUser = (uname, pass) => {
+   return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+         try {
+            const user = await fetchUser()
+            const { username, password } = user
+
+            if(uname === username && pass === password) {
+               resolve('Successfully logged in')
+            } else {
+               reject(new Error('Invalid Email or Password'))
+            }
+
+         } catch (err) {
+            reject(err)
+         }
+      }, 1000)
+   })
+}
+
+validateUser('aldobangun', 'javascript')
+   .then(response => console.log(response))
+   .catch(err => console.log(err.message))
