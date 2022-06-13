@@ -1,8 +1,8 @@
 const cekHariKerja = (day) => {
    return new Promise((resolve, reject) => {
-      setTimeout(()=>{
+      setTimeout(async ()=>{
          try{
-            const dataDays = ['senin', 'selasa', 'rabu', 'kamis', 'jumat']
+            const dataDays = await Promise.resolve(['senin', 'selasa', 'rabu', 'kamis', 'jumat'])
             let cek = dataDays.find((item) => {
                return item === day
             })
@@ -10,16 +10,20 @@ const cekHariKerja = (day) => {
             if(cek) {
                resolve(cek)
             } else {
-               throw new Error('Hari ini bukan hari kerja')
+               reject(new Error('Hari ini bukan hari kerja'))
             }
-         } catch(err) {
-            reject(err.message)
-         }
-      }, 3000)
 
+         // Blok try digunakan untuk menjalankan program sambil mengetes apakah ada error atau tidak
+         } catch(err) {
+            reject(err)
+         }
+         // Blok catch digunakan untuk menangkap segala bentuk kesalahan / error yang terjadi dalam blok try
+      }, 3000)
    })
 }
 
 cekHariKerja('kamis')
-   .then(res => console.log(res))
-   .catch(err => console.log(err))
+   .then(res => console.log(`Hari ${res} adalah hari kerja`))
+   // then digunakan untuk melanjutkan program jika promise di resolve
+   .catch(err => console.log(err.message))
+   // catch digunakan untuk melanjutkan program jika promise di reject
