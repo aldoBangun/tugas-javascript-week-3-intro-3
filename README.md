@@ -9,3 +9,11 @@
 Untuk pengetesan tugas nomor 4 bisa dilakukan dengan beberapa langkah
 - Install dependencies: `npm install`
 - Menjalankan program: `npm test`
+
+### Revisi
+- validasi pada task-1
+- penggunaan if/else pada task-3 dan task-4
+
+### Revisi yang sudah dikerjakan
+- Menambahkan validasi pada task-1
+- Mengubah penggunaan if/else pada task-3 dan task-4
