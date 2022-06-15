@@ -14,8 +14,12 @@ const errorHandler = (err) => {
 }
 
 const printUsersName = (data) => {
-   const names = data.map(item => item.name)
-   console.log(names)
+   if(Array.isArray(data)) {
+      const names = data.map(item => item.name)
+      return console.log(names)
+   }
+
+   throw new Error('Data should be an Array') //Error akan dilempar jika data bukan array
 }
 
 const getUsersName = async (url) => {

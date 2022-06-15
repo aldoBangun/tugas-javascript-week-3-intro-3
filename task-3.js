@@ -12,9 +12,11 @@ const fetchMovies = () => {
          }
       ]
 
-      movies.length
-         ? resolve(movies)
-         : reject(new Error('Movies not found'))
+      if(movies.length) {
+         resolve(movies)
+      } else {
+         reject(new Error('Movies not found'))
+      }
    })
 }
 
@@ -24,9 +26,11 @@ const getMovies = () => {
          const response = await fetchMovies()
    
          setTimeout(()=> {
-            response
-               ? resolve(response)
-               : reject(new Error('Failed to Fetch'))
+            if(response) {
+               resolve(response)
+            } else {
+               reject(new Error('Failed to Fetch'))
+            }
          }, 1000)
 
       } catch(err) {
@@ -57,7 +61,11 @@ const fetchUser = () => {
          password: 'javascript'
       }
 
-      user ? resolve(user) : reject(new Error('User not Found'))
+      if(user) {
+         resolve(user)  
+      } else {
+         reject(new Error('User not Found'))
+      }
    })
 }
 
