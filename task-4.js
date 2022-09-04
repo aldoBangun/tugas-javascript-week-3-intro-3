@@ -19,6 +19,8 @@ const printUsersName = (data) => {
 }
 
 const getUsersName = async (url) => {
+   if (typeof url !== 'string') return console.log('url should be a valid string')
+
    try {
       const res = await axios.get(url)
       printUsersName(res.data)

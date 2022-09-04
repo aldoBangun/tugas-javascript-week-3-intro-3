@@ -12,9 +12,8 @@ const fetchMovies = () => {
          }
       ]
 
-      movies.length
-         ? resolve(movies)
-         : reject(new Error('Movies not found'))
+      if (movies.length) return resolve(movies)
+      reject(new Error('Movies not found'))
    })
 }
 
@@ -24,9 +23,8 @@ const getMovies = () => {
          const response = await fetchMovies()
    
          setTimeout(()=> {
-            response
-               ? resolve(response)
-               : reject(new Error('Failed to Fetch'))
+            if (response) return resolve(response)
+            reject(new Error('Failed to Fetch'))
          }, 1000)
 
       } catch(err) {
@@ -57,22 +55,24 @@ const fetchUser = () => {
          password: 'javascript'
       }
 
-      user ? resolve(user) : reject(new Error('User not Found'))
+      if (user) return resolve(user) 
+      reject(new Error('User not Found'))
    })
 }
 
 const validateUser = (uname, pass) => {
    return new Promise((resolve, reject) => {
+      if (typeof uname !== 'string') return reject('Username should be a valid string')
+      if (typeof pass !== 'string') return reject('Password should be a valid string')
+      if (pass.length < 6) return reject('Password should be 6 or more characters')
+
       setTimeout(async () => {
          try {
             const user = await fetchUser()
             const { username, password } = user
 
-            if(uname === username && pass === password) {
-               resolve('Successfully logged in')
-            } else {
-               reject(new Error('Invalid Email or Password'))
-            }
+            if(uname === username && pass === password) return resolve('Successfully logged in')
+            reject(new Error('Invalid Email or Password'))
 
          } catch (err) {
             reject(err)
